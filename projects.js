@@ -2,11 +2,11 @@ const db = require('./db');
 
 // Create a new project
 function createProject(req, res) {
-   const { name, description } = req.body;
-   const query = 'INSERT INTO projects (name, description) VALUES (?, ?)';
-   db.query(query, [name, description], (err, result) => {
+   const { name, description, startDate, endDate } = req.body;
+   const query = 'INSERT INTO projects (ProjectName, projectdesc, StartDate, EndDate) VALUES (?, ?, ?, ?)';
+   db.query(query, [name, description, startDate, endDate], (err, result) => {
       if (err) return res.status(500).json({ error: err.message });
-      res.status(201).json({ id: result.insertId, name, description });
+      res.status(201).json({ id: result.insertId, name, description, startDate, endDate });
    });
 }
 
@@ -31,7 +31,7 @@ function getProjectById(req, res) {
 // Get project by name
 function getProjectByName(req, res) {
    const { name } = req.params;
-   db.query('SELECT * FROM projects WHERE name = ?', [name], (err, results) => {
+   db.query('SELECT * FROM projects WHERE ProjectName = ?', [name], (err, results) => {
       if (err) return res.status(500).json({ error: err.message });
       res.status(200).json(results);
    });
@@ -41,7 +41,7 @@ function getProjectByName(req, res) {
 function updateProjectById(req, res) {
    const { id } = req.params;
    const { name, description } = req.body;
-   const query = 'UPDATE projects SET name = ?, description = ? WHERE id = ?';
+   const query = 'UPDATE projects SET ProjectName = ?, projectdesc = ? WHERE id = ?';
    db.query(query, [name, description, id], (err, result) => {
       if (err) return res.status(500).json({ error: err.message });
       if (result.affectedRows === 0) return res.status(404).json({ error: 'Project not found' });
@@ -67,7 +67,6 @@ function deleteAllProjects(req, res) {
    });
 }
 
-// Export all functions
 module.exports = {
    createProject,
    getAllProjects,
