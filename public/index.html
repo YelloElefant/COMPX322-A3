@@ -3,64 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <title>Project Management API</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-        background-color: #f4f4f4;
-        color: #333;
-      }
-      h1 {
-        color: #007acc;
-      }
-      code {
-        background-color: #eee;
-        padding: 2px 4px;
-        border-radius: 3px;
-      }
-      section {
-        margin-bottom: 2rem;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Project Management REST API</h1>
-    <p>
-      This API allows users to create, retrieve, update, and delete project
-      records stored in a MySQL database.
-    </p>
+    <div class="container">
+      <h1>Project Management API</h1>
+      <p>
+        This RESTful API allows clients to manage project records using standard
+        HTTP methods and a MySQL backend.
+      </p>
 
-    <section>
-      <h2>API Endpoints</h2>
-      <ul>
-        <li><code>POST /projects</code> – Create a new project</li>
-        <li><code>GET /projects</code> – Retrieve all projects</li>
-        <li><code>GET /projects/:id</code> – Retrieve a project by ID</li>
-        <li>
-          <code>GET /projects/name/:name</code> – Retrieve a project by name
-        </li>
-        <li><code>PUT /projects/:id</code> – Update a project by ID</li>
-        <li><code>DELETE /projects/:id</code> – Delete a project by ID</li>
-        <li><code>DELETE /projects</code> – Delete all projects</li>
-      </ul>
-    </section>
+      <h2>Endpoints</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Endpoint</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="verb get">GET</span></td>
+            <td>/projects</td>
+            <td>Retrieve all projects</td>
+          </tr>
+          <tr>
+            <td><span class="verb get">GET</span></td>
+            <td>/projects/:id</td>
+            <td>Retrieve a project by ID</td>
+          </tr>
+          <tr>
+            <td><span class="verb get">GET</span></td>
+            <td>/projects/name/:name</td>
+            <td>Retrieve project(s) by name</td>
+          </tr>
+          <tr>
+            <td><span class="verb post">POST</span></td>
+            <td>/projects</td>
+            <td>Create a new project</td>
+          </tr>
+          <tr>
+            <td><span class="verb put">PUT</span></td>
+            <td>/projects/:id</td>
+            <td>Update a project by ID</td>
+          </tr>
+          <tr>
+            <td><span class="verb delete">DELETE</span></td>
+            <td>/projects/:id</td>
+            <td>Delete a project by ID</td>
+          </tr>
+          <tr>
+            <td><span class="verb delete">DELETE</span></td>
+            <td>/projects</td>
+            <td>Delete all projects</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <section>
-      <h2>Sample Postman Test</h2>
-      <p><strong>Test:</strong> Create a new project</p>
+      <h2>Postman Test Example</h2>
+      <p><strong>Test:</strong> Creating a new project</p>
       <p><strong>Method:</strong> POST</p>
       <p><strong>URL:</strong> <code>http://localhost:3000/projects</code></p>
-      <p><strong>Body:</strong> (raw JSON)</p>
+      <p><strong>Body (raw JSON):</strong></p>
       <pre>
 {
-  "name": "Encost Dashboard",
-  "description": "Web dashboard for managing smart devices"
+  "name": "Encost",
+  "description": "Smart dashboard system",
+  "startDate": "2024-05-01",
+  "endDate": "2024-12-31"
 }</pre
       >
       <p>
-        <strong>Expected Response:</strong> <code>201 Created</code> with new
-        project ID
+        <strong>Expected Response:</strong> <code>201 Created</code> with the
+        new project ID
       </p>
-    </section>
+
+      <footer>&copy; 2025 SoTech | COMPX322 Assignment Three</footer>
+    </div>
   </body>
 </html>
